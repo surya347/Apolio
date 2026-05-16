@@ -3,7 +3,7 @@ private class ExperienceLoginControllerTest {
     @IsTest
     static void loginReturnsNullOutsideSiteContext() {
         Test.startTest();
-        String result = ExperienceLoginController.login('test@example.com', 'wrongpassword');
+        String result = ExperienceLoginController.login('test@example.com', 'wrongpassword', '/');
         Test.stopTest();
         Assert.isNull(result, 'Expected null when Site.login has no page reference outside site context');
     }
@@ -13,7 +13,7 @@ private class ExperienceLoginControllerTest {
         Test.startTest();
         Boolean threw = false;
         try {
-            ExperienceLoginController.login(null, null);
+            ExperienceLoginController.login(null, null, null);
         } catch (AuraHandledException e) {
             threw = true;
         }

@@ -1,0 +1,138 @@
+<template>
+    <div class="reg-page">
+        <div class="reg-card">
+
+            <!-- Brand -->
+            <div class="reg-card__brand">
+                <span class="brand-dot"></span>
+                <span class="brand-name">{siteName}</span>
+            </div>
+
+            <h1 class="reg-card__title">Create an account</h1>
+            <p class="reg-card__sub">Fill in the details below to get started</p>
+
+            <!-- Error banner -->
+            <template lwc:if={errorMessage}>
+                <div class="reg-error" role="alert">
+                    <span class="reg-error__icon">&#9888;</span>
+                    {errorMessage}
+                </div>
+            </template>
+
+            <!-- Registration form -->
+            <form class="reg-form" onsubmit={handleSubmit} novalidate>
+
+                <!-- Name row -->
+                <div class="name-row">
+                    <div class="form-group">
+                        <label class="form-label" for="firstName">First Name</label>
+                        <input
+                            id="firstName"
+                            class="form-input"
+                            type="text"
+                            placeholder="First Name"
+                            value={firstName}
+                            data-field="firstName"
+                            oninput={handleInput}
+                            autocomplete="given-name"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="lastName">
+                            Last Name<span class="required-star" aria-hidden="true"> *</span>
+                        </label>
+                        <input
+                            id="lastName"
+                            class="form-input"
+                            type="text"
+                            placeholder="Last Name"
+                            value={lastName}
+                            data-field="lastName"
+                            oninput={handleInput}
+                            autocomplete="family-name"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label class="form-label" for="email">
+                        Email<span class="required-star" aria-hidden="true"> *</span>
+                    </label>
+                    <input
+                        id="email"
+                        class="form-input"
+                        type="email"
+                        placeholder="you@example.com"
+                        value={email}
+                        data-field="email"
+                        oninput={handleInput}
+                        autocomplete="email"
+                        required
+                    />
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label class="form-label" for="password">Create Password</label>
+                    <input
+                        id="password"
+                        class="form-input"
+                        type="password"
+                        placeholder="Create Password"
+                        value={password}
+                        data-field="password"
+                        oninput={handleInput}
+                        autocomplete="new-password"
+                    />
+                    <template lwc:if={password}>
+                        <div class="pw-strength" role="status" aria-live="polite">
+                            <div class="pw-strength__bar">
+                                <span class={strengthFillClass}></span>
+                            </div>
+                            <span class={strengthLabelClass}>{strengthLabelText}</span>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    <input
+                        id="confirmPassword"
+                        class="form-input"
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        data-field="confirmPassword"
+                        oninput={handleInput}
+                        autocomplete="new-password"
+                    />
+                </div>
+
+                <button type="submit" class="reg-btn" disabled={isLoading}>
+                    <template lwc:if={isLoading}>
+                        <span class="spinner" aria-hidden="true"></span>
+                        Creating account&hellip;
+                    </template>
+                    <template lwc:else>
+                        Sign Up
+                    </template>
+                </button>
+
+            </form>
+
+            <p class="reg-card__footer">
+                Already have an account?&nbsp;
+                <button class="text-link" type="button" onclick={handleCancel}>Sign in</button>
+            </p>
+
+        </div>
+
+        <div class="bg-shapes" aria-hidden="true">
+            <span class="shape shape--1"></span>
+            <span class="shape shape--2"></span>
+        </div>
+    </div>
+</template>

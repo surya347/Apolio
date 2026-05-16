@@ -1,0 +1,318 @@
+/* ── Tokens ──────────────────────────────────────────────────────────────── */
+:host {
+    --rp-primary:      #0176d3;
+    --rp-primary-dark: #014486;
+    --rp-accent:       #00aaff;
+    --rp-dark:         #0a1628;
+    --rp-dark-2:       #0f2d5e;
+    --rp-surface:      #ffffff;
+    --rp-border:       #d1dce8;
+    --rp-text:         #1c1c1c;
+    --rp-text-muted:   #5c6b7a;
+    --rp-error:        #c23934;
+    --rp-error-bg:     #fdf3f2;
+    --rp-success:      #2e7d32;
+    --rp-radius:       14px;
+    --rp-transition:   200ms ease;
+    display: block;
+    width: 100%;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+/* ── Full-page background ────────────────────────────────────────────────── */
+.reg-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--rp-dark) 0%, var(--rp-dark-2) 60%, #1a4a8a 100%);
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* decorative blobs */
+.bg-shapes { position: absolute; inset: 0; pointer-events: none; }
+
+.shape { position: absolute; border-radius: 50%; opacity: 0.10; }
+.shape--1 { width: 560px; height: 560px; background: var(--rp-accent);   top: -200px;    right: -140px; }
+.shape--2 { width: 360px; height: 360px; background: var(--rp-primary);  bottom: -140px; left:  -80px;  }
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.reg-card {
+    position: relative;
+    z-index: 1;
+    background: var(--rp-surface);
+    border-radius: var(--rp-radius);
+    padding: 2.75rem 2.5rem 2.25rem;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35), 0 4px 16px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+/* ── Brand ───────────────────────────────────────────────────────────────── */
+.reg-card__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.brand-dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    background: var(--rp-accent);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--rp-accent);
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--rp-dark);
+    letter-spacing: 0.01em;
+}
+
+/* ── Headings ────────────────────────────────────────────────────────────── */
+.reg-card__title {
+    font-size: 1.625rem;
+    font-weight: 800;
+    color: var(--rp-dark);
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.02em;
+}
+
+.reg-card__sub {
+    font-size: 0.9375rem;
+    color: var(--rp-text-muted);
+    margin: 0 0 1.75rem;
+    line-height: 1.5;
+}
+
+/* ── Error banner ────────────────────────────────────────────────────────── */
+.reg-error {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--rp-error-bg);
+    border: 1px solid #f5c0be;
+    border-left: 4px solid var(--rp-error);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--rp-error);
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.25rem;
+}
+
+.reg-error__icon { font-size: 1rem; flex-shrink: 0; }
+
+/* ── Form ────────────────────────────────────────────────────────────────── */
+.reg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+/* first/last name side by side */
+.name-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.9rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--rp-text);
+}
+
+.required-star { color: var(--rp-error); }
+
+.input-wrap { position: relative; }
+
+.form-input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9375rem;
+    color: var(--rp-text);
+    background: #f7fafd;
+    border: 1.5px solid var(--rp-border);
+    border-radius: 8px;
+    outline: none;
+    transition: border-color var(--rp-transition), box-shadow var(--rp-transition),
+                background var(--rp-transition);
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.input-wrap .form-input { padding-right: 2.8rem; }
+
+.form-input:focus {
+    border-color: var(--rp-primary);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(1,118,211,0.15);
+}
+
+.form-input::placeholder { color: #a8b5c2; }
+
+.form-input--error {
+    border-color: var(--rp-error);
+    background: var(--rp-error-bg);
+}
+
+.form-input--error:focus {
+    box-shadow: 0 0 0 3px rgba(194,57,52,0.15);
+}
+
+.field-error {
+    font-size: 0.8rem;
+    color: var(--rp-error);
+    font-weight: 500;
+    margin-top: 0.1rem;
+}
+
+/* ── Password visibility toggle ─────────────────────────────────────────── */
+.toggle-pw {
+    position: absolute;
+    right: 0.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.25rem;
+    color: var(--rp-text-muted);
+    transition: color var(--rp-transition);
+    display: flex;
+    align-items: center;
+}
+
+.toggle-pw:hover { color: var(--rp-primary); }
+
+/* ── Password strength ───────────────────────────────────────────────────── */
+.pw-strength {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+}
+
+.pw-strength__bar {
+    flex: 1;
+    height: 4px;
+    background: #e5eaf0;
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.pw-strength__fill {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    transition: width 250ms ease, background 250ms ease;
+}
+
+.pw-strength__fill--0 { width: 0%; }
+.pw-strength__fill--1 { width: 25%; background: var(--rp-error); }
+.pw-strength__fill--2 { width: 50%; background: #e67e22; }
+.pw-strength__fill--3 { width: 75%; background: #f1c40f; }
+.pw-strength__fill--4 { width: 100%; background: var(--rp-success); }
+
+.pw-strength__label {
+    font-size: 0.775rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.pw-strength__label--1 { color: var(--rp-error); }
+.pw-strength__label--2 { color: #e67e22; }
+.pw-strength__label--3 { color: #b8860b; }
+.pw-strength__label--4 { color: var(--rp-success); }
+
+/* ── Submit button ───────────────────────────────────────────────────────── */
+.reg-btn {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--rp-primary) 0%, #0254a3 100%);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: opacity var(--rp-transition), transform var(--rp-transition),
+                box-shadow var(--rp-transition);
+    box-shadow: 0 4px 16px rgba(1,118,211,0.4);
+    font-family: inherit;
+    letter-spacing: 0.01em;
+}
+
+.reg-btn:hover:not(:disabled) {
+    opacity: 0.92;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(1,118,211,0.45);
+}
+
+.reg-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+
+/* ── Spinner ─────────────────────────────────────────────────────────────── */
+.spinner {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border: 2px solid rgba(255,255,255,0.35);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.65s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Links ───────────────────────────────────────────────────────────────── */
+.text-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--rp-primary);
+    padding: 0;
+    font-family: inherit;
+    transition: color var(--rp-transition);
+}
+
+.text-link:hover {
+    color: var(--rp-primary-dark);
+    text-decoration: underline;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+.reg-card__footer {
+    margin: 1.5rem 0 0;
+    text-align: center;
+    font-size: 0.875rem;
+    color: var(--rp-text-muted);
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .reg-card { padding: 2rem 1.5rem 1.75rem; }
+    .name-row { grid-template-columns: 1fr; }
+}
