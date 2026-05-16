@@ -3,13 +3,21 @@ import { NavigationMixin } from 'lightning/navigation';
 import login from '@salesforce/apex/ExperienceLoginController.login';
 
 export default class ExperienceLoginPage extends NavigationMixin(LightningElement) {
-    @api siteName = 'Apolio';
+    @api siteName            = 'Apolio';
+    @api startUrl            = '/';
+    @api usernameLabel       = 'Username';
+    @api passwordLabel       = 'Password';
+    @api loginButtonLabel    = 'Log In';
+    @api forgotPasswordLabel = 'Forgot your password?';
+    @api forgotPasswordUrl   = '/ForgotPassword';
+    @api selfRegisterLabel   = 'Not a member?';
+    @api selfRegisterUrl     = '/SelfRegister';
 
-    @track username = '';
-    @track password = '';
-    @track errorMessage = '';
-    @track isLoading = false;
-    @track showPassword = false;
+    @track username      = '';
+    @track password      = '';
+    @track errorMessage  = '';
+    @track isLoading     = false;
+    @track showPassword  = false;
 
     handleUsernameInput(event) {
         this.username = event.target.value;
@@ -33,7 +41,11 @@ export default class ExperienceLoginPage extends NavigationMixin(LightningElemen
         this.errorMessage = '';
 
         try {
-            const redirectUrl = await login({ username: this.username.trim(), password: this.password });
+            const redirectUrl = await login({
+                username: this.username.trim(),
+                password: this.password,
+                startUrl: this.startUrl || '/'
+            });
             if (redirectUrl) {
                 window.location.href = redirectUrl;
             } else {
@@ -47,17 +59,25 @@ export default class ExperienceLoginPage extends NavigationMixin(LightningElemen
     }
 
     handleForgotPassword() {
-        this[NavigationMixin.Navigate]({
-            type: 'comm__loginPage',
-            attributes: { actionName: 'forgotPassword' }
-        });
+        if (this.forgotPasswordUrl) {
+            window.location.href = this.forgotPasswordUrl;
+        } else {
+            this[NavigationMixin.Navigate]({
+                type: 'comm__loginPage',
+                attributes: { actionName: 'forgotPassword' }
+            });
+        }
     }
 
     handleRegister() {
-        this[NavigationMixin.Navigate]({
-            type: 'comm__loginPage',
-            attributes: { actionName: 'register' }
-        });
+        if (this.selfRegisterUrl) {
+            window.location.href = this.selfRegisterUrl;
+        } else {
+            this[NavigationMixin.Navigate]({
+                type: 'comm__loginPage',
+                attributes: { actionName: 'register' }
+            });
+        }
     }
 
     get passwordInputType() {

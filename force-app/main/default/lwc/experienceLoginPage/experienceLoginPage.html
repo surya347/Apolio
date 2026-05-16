@@ -22,7 +22,7 @@
             <!-- Login form -->
             <form class="login-form" onsubmit={handleSubmit} novalidate>
                 <div class="form-group">
-                    <label class="form-label" for="username">Email or Username</label>
+                    <label class="form-label" for="username">{usernameLabel}</label>
                     <input
                         id="username"
                         class="form-input"
@@ -37,9 +37,9 @@
 
                 <div class="form-group">
                     <div class="form-label-row">
-                        <label class="form-label" for="password">Password</label>
+                        <label class="form-label" for="password">{passwordLabel}</label>
                         <button type="button" class="text-link" onclick={handleForgotPassword}>
-                            Forgot password?
+                            {forgotPasswordLabel}
                         </button>
                     </div>
                     <div class="input-wrap">
@@ -71,13 +71,13 @@
                         Signing in&hellip;
                     </template>
                     <template lwc:else>
-                        Sign In
+                        {loginButtonLabel}
                     </template>
                 </button>
             </form>
 
             <p class="login-card__footer">
-                Don&rsquo;t have an account?&nbsp;
+                {selfRegisterLabel}&nbsp;
                 <button class="text-link" type="button" onclick={handleRegister}>Sign up</button>
             </p>
         </div>

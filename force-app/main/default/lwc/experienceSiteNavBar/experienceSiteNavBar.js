@@ -39,7 +39,7 @@ export default class ExperienceSiteNavBar extends NavigationMixin(LightningEleme
     }
 
     handleLoginNav() {
-        this._navigate({ type: 'comm__loginPage', attributes: { actionName: 'login' } });
+        this._navigate({ type: 'comm__namedPage', attributes: { name: 'Login' } });
     }
 
     _navigate(pageRef) {

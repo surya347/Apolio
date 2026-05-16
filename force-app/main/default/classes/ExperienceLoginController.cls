@@ -1,8 +1,9 @@
 public without sharing class ExperienceLoginController {
     @AuraEnabled
-    public static String login(String username, String password) {
+    public static String login(String username, String password, String startUrl) {
         try {
-            PageReference ref = Site.login(username, password, '/');
+            String url = String.isBlank(startUrl) ? '/' : startUrl;
+            PageReference ref = Site.login(username, password, url);
             return ref != null ? ref.getUrl() : null;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());

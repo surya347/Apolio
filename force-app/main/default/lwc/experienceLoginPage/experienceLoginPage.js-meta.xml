@@ -8,8 +8,15 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
-            <property name="siteName" type="String" label="Site Name" default="Apolio"
-                      description="Brand name shown at the top of the login card"/>
+            <property name="siteName"            type="String" label="Site Name"                   default="Apolio"                    description="Brand name shown at the top of the login card"/>
+            <property name="startUrl"            type="String" label="Start URL"                   default="/"                         description="Page to redirect to after a successful login"/>
+            <property name="usernameLabel"       type="String" label="Username Label"              default="Username"                  description="Label shown above the username input"/>
+            <property name="passwordLabel"       type="String" label="Password Label"              default="Password"                  description="Label shown above the password input"/>
+            <property name="loginButtonLabel"    type="String" label="Login Button Label"          default="Log In"                    description="Text on the submit button"/>
+            <property name="forgotPasswordLabel" type="String" label="Forgot Password Link Label"  default="Forgot your password?"     description="Text of the forgot-password link"/>
+            <property name="forgotPasswordUrl"   type="String" label="Forgot Password URL"         default="/ForgotPassword"           description="URL for the forgot-password link (leave blank to use built-in navigation)"/>
+            <property name="selfRegisterLabel"   type="String" label="Self Register Link Label"    default="Not a member?"             description="Text of the self-registration link"/>
+            <property name="selfRegisterUrl"     type="String" label="Self Register URL"           default="/SelfRegister"             description="URL for the self-registration link (leave blank to use built-in navigation)"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
