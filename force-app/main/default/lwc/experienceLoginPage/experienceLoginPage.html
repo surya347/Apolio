@@ -1,0 +1,91 @@
+<template>
+    <div class="login-page">
+        <div class="login-card">
+
+            <!-- Brand -->
+            <div class="login-card__brand">
+                <span class="brand-dot"></span>
+                <span class="brand-name">{siteName}</span>
+            </div>
+
+            <h1 class="login-card__title">Welcome back</h1>
+            <p class="login-card__sub">Sign in to your account to continue</p>
+
+            <!-- Error banner -->
+            <template lwc:if={errorMessage}>
+                <div class="login-error" role="alert">
+                    <span class="login-error__icon">&#9888;</span>
+                    {errorMessage}
+                </div>
+            </template>
+
+            <!-- Login form -->
+            <form class="login-form" onsubmit={handleSubmit} novalidate>
+                <div class="form-group">
+                    <label class="form-label" for="username">Email or Username</label>
+                    <input
+                        id="username"
+                        class="form-input"
+                        type="text"
+                        placeholder="you@example.com"
+                        value={username}
+                        oninput={handleUsernameInput}
+                        autocomplete="username"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <div class="form-label-row">
+                        <label class="form-label" for="password">Password</label>
+                        <button type="button" class="text-link" onclick={handleForgotPassword}>
+                            Forgot password?
+                        </button>
+                    </div>
+                    <div class="input-wrap">
+                        <input
+                            id="password"
+                            class="form-input"
+                            type={passwordInputType}
+                            placeholder="Enter your password"
+                            value={password}
+                            oninput={handlePasswordInput}
+                            autocomplete="current-password"
+                            required
+                        />
+                        <button
+                            type="button"
+                            class="toggle-pw"
+                            onclick={togglePasswordVisibility}
+                            aria-label={togglePasswordLabel}
+                        >
+                            <template lwc:if={showPassword}>&#128065;&#65039;</template>
+                            <template lwc:else>&#128274;</template>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn" disabled={isLoading}>
+                    <template lwc:if={isLoading}>
+                        <span class="spinner" aria-hidden="true"></span>
+                        Signing in&hellip;
+                    </template>
+                    <template lwc:else>
+                        Sign In
+                    </template>
+                </button>
+            </form>
+
+            <p class="login-card__footer">
+                Don&rsquo;t have an account?&nbsp;
+                <button class="text-link" type="button" onclick={handleRegister}>Sign up</button>
+            </p>
+        </div>
+
+        <!-- Background shapes (decorative, matches home page) -->
+        <div class="bg-shapes" aria-hidden="true">
+            <span class="shape shape--1"></span>
+            <span class="shape shape--2"></span>
+        </div>
+    </div>
+</template>
