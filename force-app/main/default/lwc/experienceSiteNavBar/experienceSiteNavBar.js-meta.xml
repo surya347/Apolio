@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+                name="siteName"
+                type="String"
+                label="Site Name"
+                description="Brand name displayed in the navbar"
+                default="My Site"
+            />
+            <property
+                name="primaryColor"
+                type="String"
+                label="Primary Color"
+                description="Hex color for links, active state, and login button (e.g. #0176d3)"
+                default="#0176d3"
+            />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,64 @@
+<template>
+    <nav class="navbar" aria-label="Site navigation">
+        <div class="navbar__inner">
+
+            <!-- Brand -->
+            <button class="navbar__brand" onclick={handleHomeNav} aria-label="Go to home">
+                <span class="navbar__brand-text">{siteName}</span>
+            </button>
+
+            <!-- Desktop links -->
+            <ul class="navbar__links" role="list">
+                <li>
+                    <button class={homeLinkClass} onclick={handleHomeNav} aria-current={homeAriaCurrent}>
+                        Home
+                    </button>
+                </li>
+                <li>
+                    <button class={supportLinkClass} onclick={handleSupportNav} aria-current={supportAriaCurrent}>
+                        Support
+                    </button>
+                </li>
+                <li>
+                    <button class="navbar__link navbar__link--login" onclick={handleLoginNav}>
+                        Login
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Hamburger -->
+            <button
+                class={hamburgerClass}
+                onclick={toggleMenu}
+                aria-label="Toggle navigation menu"
+                aria-expanded={isMenuOpen}
+                aria-controls="mobile-menu"
+            >
+                <span class="hamburger__bar"></span>
+                <span class="hamburger__bar"></span>
+                <span class="hamburger__bar"></span>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class={mobileMenuClass} aria-hidden={mobileMenuHidden}>
+            <ul class="mobile-menu__links" role="list">
+                <li>
+                    <button class={mobileHomeLinkClass} onclick={handleHomeNav} aria-current={homeAriaCurrent}>
+                        Home
+                    </button>
+                </li>
+                <li>
+                    <button class={mobileSupportLinkClass} onclick={handleSupportNav} aria-current={supportAriaCurrent}>
+                        Support
+                    </button>
+                </li>
+                <li>
+                    <button class="mobile-menu__link mobile-menu__link--login" onclick={handleLoginNav}>
+                        Login
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</template>
